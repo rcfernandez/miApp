@@ -1,0 +1,99 @@
+<nav>
+  <div class="container">
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">miApp</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a routerLink="/contacto">Contacto</a></li>
+        <li><a routerLink="/registro">Registro</a></li>
+        <li><a routerLink="/login">Login</a></li>
+        <li><a routerLink="/usuarios">Usuarios</a></li>
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Administrar<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- menu mobile -->
+<ul class="sidenav" id="mobile-demo">
+  <li><a routerLink="/contacto">Contacto</a></li>
+  <li><a routerLink="/registro">Registro</a></li>
+  <li><a routerLink="/login">Login</a></li>
+  <li><a routerLink="/usuarios">Usuarios</a></li>
+</ul>
+
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a routerLink="/usuarios">Usuarios</a></li>
+  <li><a href="/productos">Productos</a></li>
+  <li><a routerLink="/categorias">Categoria</a></li>
+  <li><a routerLink="/ventas">Ventas</a></li>
+</ul>
+
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary animate__animated animate__fadeIn" color="primary">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/home">Mueblín!</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="#">Ofertas</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Catálogo
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Línea Comedor</a>
+            <a class="dropdown-item" href="#">Línea Dormitorio</a>
+            <a class="dropdown-item" href="#">Línea Hogar</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contacto">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/registro">Registro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/productos" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Adm. Productos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/productos">Listado de Productos</a>
+            <a class="dropdown-item" href="/productos-alta">Alta de Productos</a>
+            <a class="dropdown-item" href="/productos-modificacion">Modificacion de Productos</a>
+            <a class="dropdown-item" href="#">Baja de Productos</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/categorias">Adm. Categorias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/table-list">Table LIst</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</nav> -->

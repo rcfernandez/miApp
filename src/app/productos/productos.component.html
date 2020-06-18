@@ -1,0 +1,155 @@
+<div class="container">
+  <div class="row">
+
+    <div class="section">
+      <h4>Administración de Productos</h4>
+      <div class="divider"></div>
+      <br><br>
+    
+      <!--coluna izquierda-->
+      <div class="col s12 m12 l5">
+        <div class="card">
+          <div class="card-content">
+
+            <form [formGroup]="myForm" >
+
+              <!-- ID -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="" class="validate" formControlName="_id" [(ngModel)]="productosService.selectedProducto._id" disabled />
+                  <label for="_id">ID</label>
+                </div>
+              </div>
+
+              <!-- nombre - obligatorio -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="" formControlName="nombre" [(ngModel)]="productosService.selectedProducto.nombre" [ngClass]="{ invalid:myForm.get('nombre').hasError('required') && myForm.get('nombre').dirty }">
+                  <label for="nombre" data-error="" data-success="Correcto">nombre</label>
+                  <div *ngIf="myForm.get('nombre').errors && myForm.get('nombre').dirty">
+                    <p *ngIf="myForm.get('nombre').hasError('required')">*El campo es obligatorio</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- descripcion - obligatorio -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="" formControlName="descripcion" [(ngModel)]="productosService.selectedProducto.descripcion" [ngClass]="{ invalid:myForm.get('descripcion').hasError('required') && myForm.get('descripcion').dirty }">
+                  <label for="descripcion" data-error="" data-success="Correcto">descripcion</label>
+                  <div *ngIf="myForm.get('descripcion').errors && myForm.get('descripcion').dirty">
+                    <p *ngIf="myForm.get('descripcion').hasError('required')">*El campo es obligatorio</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- precio - obligatorio -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="" formControlName="precio" [(ngModel)]="productosService.selectedProducto.precio" [ngClass]="{ invalid:myForm.get('precio').hasError('required') && myForm.get('precio').dirty }">
+                  <label for="precio" data-error="" data-success="Correcto">precio</label>
+                  <div *ngIf="myForm.get('precio').errors && myForm.get('precio').dirty">
+                    <p *ngIf="myForm.get('precio').hasError('required')">*El campo es obligatorio</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- cantidad -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="valid" placeholder="" formControlName="cantidad" [(ngModel)]="productosService.selectedProducto.cantidad">
+                  <label for="cantidad" data-error="" data-success="">cantidad</label>
+                </div>
+              </div>
+
+              <!-- destacado -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="valid" placeholder="" formControlName="destacado" [(ngModel)]="productosService.selectedProducto.destacado">
+                  <label for="destacado" data-error="" data-success="">destacado</label>
+                </div>
+              </div>
+
+              <!-- CATEGORIA -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <select  formControlName="categoria" [(ngModel)]="productosService.selectedProducto.categoria">
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option *ngFor="let item of categorias" [value]="item._id">{{ item.descripcion }} </option>
+                  </select>
+                  <label>Seleccione Categoria</label>
+                </div>
+              </div>
+
+            </form>
+
+            <!-- acciones -->
+            <div class="row">
+              <div class="card-action center">
+                <button class="waves-effect waves-light btn col s12 m12 l6" [disabled]="myForm.invalid" (click)="alta()">Guardar</button>
+                <button class="waves-effect waves-light btn col s12 m12 l6" (click)="resetForm()">Limpiar</button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <!--columna derecha-->
+      <div class="col s12 m12 l7">
+        <table class="responsive-table">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Descripcion</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Categoria</th>
+              <th>Destacado</th>
+              <th>Accion</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of productos">
+              <td><img class="img-thumbnail" style="height: auto; width: 100px;" src="http://lorempixel.com/286/180/" alt="Card image cap"/></td>
+              <td>{{ item._id }}</td>
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.descripcion }}</td>
+              <td>{{ item.precio }}</td>
+              <td>{{ item.cantidad }}</td>
+              <td>{{ item.categoria.descripcion }}</td>
+              <td>{{ item.destacado}}</td>
+              <td>
+                <a type="submit" class="waves-effect waves-light btn" (click)="modificar(item)"><i class="material-icons">edit</i></a>
+                <a class="waves-effect waves-light btn red darken-3" (click)="borrar(item._id)"><i class="material-icons">delete</i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+        <div class="row right">
+            <ul class="pagination">
+              <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+              <li class="active"><a href="#!">1</a></li>
+              <li class="waves-effect"><a href="#!">2</a></li>
+              <li class="waves-effect"><a href="#!">3</a></li>
+              <li class="waves-effect"><a href="#!">4</a></li>
+              <li class="waves-effect"><a href="#!">5</a></li>
+              <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        </div>
+
+
+
+      </div>
+    </div> <!-- section -->
+
+  </div> <!-- row -->
+</div> <!-- container -->
+
+

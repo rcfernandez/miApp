@@ -1,0 +1,58 @@
+<div class="container py-3">
+    <h1>Calculadora Angular</h1>
+    <hr>
+    <br/>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="valor1">Valor 1</label>
+                <br/>
+                <input type="text" class="form-control form-control-md" [(ngModel)]="valor1">
+            </div>
+            <div class="col-md-3">
+                <label for="valor2">Valor 2</label>
+                <br/>
+                <input type="text" class="form-control form-control-md" [(ngModel)]="valor2"> 
+            </div>
+        </div>
+
+        <div class="row py-4">
+            <div class="col-md-6">
+                <label for="resultado">Resultado</label>
+                <br/>
+                <input type="text" class="form-control form-control-md" [(ngModel)]="resultado">
+            </div>
+        </div>
+
+        <div class="row py-3 px-3">
+            <h4>Operaciones</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1">
+                <input class="btn btn-primary" type="button" value="Sumar" (click)="sumar()" >
+            </div>
+            <div class="col-md-1">
+                <input class="btn btn-primary" type="button" value="Restar" (click)="restar()" >
+            </div>
+            <div class="col-md-1">
+                <input class="btn btn-primary" type="button" value="Multiplicar" (click)="multiplicar()" >
+            </div>
+            <div class="col-md-1 px-5">
+                <input class="btn btn-primary" type="button" value="Dividir" (click)="dividir()" >
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</div> <!--container-->
+
+
+
+
+
+
+

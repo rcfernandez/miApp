@@ -1,0 +1,143 @@
+<div class="container">
+  <div class="row">
+
+    <div class="section">
+      <h4>Administración de Usuarios</h4>
+      <div class="divider"></div>
+      <br><br>
+    
+      <!--coluna izquierda-->
+      <div class="col s12 m12 l5">
+        <div class="card">
+          <div class="card-content">
+
+            <form [formGroup]="myForm" >
+
+              <!-- id -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="" class="validate" formControlName="_id" [(ngModel)]="usuariosService.selectedUsuario._id" disabled />
+                  <label for="_id">ID</label>
+                </div>
+              </div>
+
+              <!-- usuario -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="" formControlName="usuario" [(ngModel)]="usuariosService.selectedUsuario.usuario" [ngClass]="{ invalid:myForm.get('usuario').hasError('required') && myForm.get('usuario').dirty }">
+                  <label for="usuario" data-error="" data-success="Correcto">Usuario</label>
+                  <div *ngIf="myForm.get('usuario').errors && myForm.get('usuario').dirty">
+                    <p *ngIf="myForm.get('usuario').hasError('required')">*El campo es obligatorio</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- nombre -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="" formControlName="nombre" [(ngModel)]="usuariosService.selectedUsuario.nombre" [ngClass]="{ invalid:myForm.get('nombre').hasError('required') && myForm.get('nombre').dirty }">
+                  <label for="nombre" data-error="" data-success="Correcto">Nombre</label>
+                  <div *ngIf="myForm.get('nombre').errors && myForm.get('nombre').dirty">
+                    <p *ngIf="myForm.get('nombre').hasError('required')">*El campo es obligatorio</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- apellido -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="" formControlName="apellido" [(ngModel)]="usuariosService.selectedUsuario.apellido" [ngClass]="{ invalid:myForm.get('apellido').hasError('required') && myForm.get('apellido').dirty }">
+                  <label for="apellido" data-error="" data-success="Correcto">Apellido</label>
+                  <div *ngIf="myForm.get('apellido').errors && myForm.get('apellido').dirty">
+                    <p *ngIf="myForm.get('apellido').hasError('required')">*El campo es obligatorio</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- telefono -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="" formControlName="telefono" [(ngModel)]="usuariosService.selectedUsuario.telefono" [ngClass]="{ invalid:myForm.get('telefono').hasError('required') && myForm.get('telefono').dirty }">
+                  <label for="telefono" data-error="" data-success="Correcto">Telefono</label>
+                  <div *ngIf="myForm.get('telefono').errors && myForm.get('apellido').dirty">
+                    <p *ngIf="myForm.get('telefono').hasError('required')">*El campo es obligatorio</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- email -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="" formControlName="email" [(ngModel)]="usuariosService.selectedUsuario.email" [ngClass]="{ invalid:myForm.get('email').hasError('required') && myForm.get('email').dirty }">
+                  <label for="email" data-error="" data-success="Correcto">Email</label>
+                  <div *ngIf="myForm.get('email').errors && myForm.get('email').dirty">
+                    <p *ngIf="myForm.get('email').hasError('required')">*El campo es obligatorio</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- password -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="" formControlName="password" [(ngModel)]="usuariosService.selectedUsuario.password" [ngClass]="{ invalid:myForm.get('password').hasError('required') && myForm.get('password').dirty }">
+                  <label for="password" data-error="" data-success="Correcto">Password</label>
+                  <div *ngIf="myForm.get('password').errors && myForm.get('password').dirty">
+                    <p *ngIf="myForm.get('password').hasError('required')">*El campo es obligatorio</p>
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+
+            <div class="row">
+              <div class="card-action center">
+                <button class="waves-effect waves-light btn col s12 m12 l6" [disabled]="myForm.invalid" (click)="alta()">Guardar</button>
+                <button class="waves-effect waves-light btn col s12 m12 l6" (click)="resetForm()">Limpiar</button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <!--columna derecha-->
+      <div class="col s12 m12 l7">
+        <table class="responsive-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Usuario</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Telefono</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th>Acciones</th>            
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of usuarios">
+              <td>{{ item._id }}</td>
+              <td>{{ item.usuario }}</td>
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.apellido }}</td>
+              <td>{{ item.telefono }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.password }}</td>
+              <td>
+                <a type="submit" class="waves-effect waves-light btn" (click)="modificar(item)"><i class="material-icons">edit</i></a>
+                <a class="waves-effect waves-light btn red darken-3" (click)="borrar(item._id)"><i class="material-icons">delete</i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div> <!-- section -->
+  
+    
+  </div> <!-- row -->
+</div> <!-- container -->

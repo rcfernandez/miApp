@@ -1,0 +1,33 @@
+<div class="container py-4">
+  <h1>Bienvenidos a Mueblería Mueblín!</h1>
+  <br />
+  <br />
+
+  <div class="py-1">
+    <h3>Productos Destacados</h3>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div
+      class="card mx-2 my-3"
+      style="width: 18rem;"
+      *ngFor="let producto of productos"
+    >
+      <img
+        class="card-img-top"
+        src="http://lorempixel.com/286/180/"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ producto.nombre }}</h5>
+        <p class="card-text">{{ producto.descripcion }}</p>
+        <small class="text-muted">Categoria: {{ producto.categoria.descripcion }}</small><br />
+        <small class="text-muted"> Stock: {{ producto.cantidad }}</small
+        ><br /><br />
+        <p class="card-text">Precio: $ {{ producto.precio }}</p>
+        <a href="#" class="btn btn-primary btn-block">Comprar</a>
+      </div>
+    </div>
+  </div>
+</div>
