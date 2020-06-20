@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UsuariosService } from '../services/usuarios.service';
-import { Usuario } from '../models/usuario.model';
+import { UsuariosService } from '../../services/usuarios.service';
+import { Usuario } from '../../models/usuario.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var Materialize;

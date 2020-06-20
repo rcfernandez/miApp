@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriasService } from '../services/categorias.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { CategoriasService } from '../../services/categorias.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Categoria } from '../models/categoria.model';
+import { Categoria } from '../../models/categoria.model';
 
 declare var Materialize;
 

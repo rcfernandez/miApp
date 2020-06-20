@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductosService } from '../services/productos.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ProductosService } from '../../services/productos.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoriasService } from '../services/categorias.service';
-import { Producto } from '../models/producto.model';
-import { Categoria } from '../models/categoria.model';
+import { CategoriasService } from '../../services/categorias.service';
+import { Producto } from '../../models/producto.model';
 
 
-declare var M;
+declare var Materialize;
 
 @Component({
   selector: 'app-productos',
@@ -55,7 +53,7 @@ export class ProductosComponent implements OnInit {
       this.productosService.updateProducto(this.myForm.controls["_id"].value, this.myForm.value).subscribe((data) => {
         this.myForm.reset();
         this.traerProductos();
-        M.toast({html: 'Se modifico correctamente', classes: 'rounded'})
+        Materialize.toast({html: 'Se modifico correctamente', classes: 'rounded'})
       });
     }
     // sino agrega uno nuevo
@@ -63,7 +61,7 @@ export class ProductosComponent implements OnInit {
       this.productosService.createProducto(this.myForm.value).subscribe((data) => {
         this.myForm.reset();
         this.traerProductos();
-        M.toast({html: 'Se agrego correctamente', classes: 'rounded'})
+        Materialize.toast({html: 'Se agrego correctamente', classes: 'rounded'})
       });
       
     }
@@ -78,7 +76,7 @@ export class ProductosComponent implements OnInit {
     // });
     this.myForm = this.fb.group({
       _id: [producto._id],
-      nombre: [producto, Validators.required],
+      nombre: [producto.nombre, Validators.required],
       descripcion: [producto.descripcion, Validators.required],
       precio: [producto.precio, Validators.required],
       cantidad: [producto.cantidad],
@@ -96,7 +94,7 @@ export class ProductosComponent implements OnInit {
     if(confirm("Estas seguro de querer borrarlo?")){
       this.productosService.deleteProducto(id).subscribe(() => {
         this.traerProductos();
-        M.toast({html: 'Se borro correctamente', classes: 'rounded'})
+        Materialize.toast({html: 'Se borro correctamente', classes: 'rounded'})
       });
     }
   }
