@@ -10,7 +10,9 @@ export class ProductosService {
 
   selectedProducto: Producto;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient
+    ) {
     this.selectedProducto = new Producto();
   }
 
@@ -19,8 +21,22 @@ export class ProductosService {
     return this.http.get(environment.urlApi +'/productos');
   }
 
+  getProductos2(pageInfo=null) {
+    let query='';
+
+    //PageInfo en offset recibe pagina -1, cuando consulta a express lo envia por query string
+    if(pageInfo){
+      query='?page='+(pageInfo["offset"]+1)
+    }
+    return this.http.get(environment.urlApi +'/productos/'+ query);
+  }
+
   getProductosById(id) {
     return this.http.get(environment.urlApi +'/productos/' + id);
+  }
+
+  getDestacados() {
+    return this.http.get(environment.urlApi +'/productos/destacados');
   }
 
   createProducto(datos) {

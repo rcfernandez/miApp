@@ -1,0 +1,37 @@
+.row-padre{
+//     display: -webkit-flex;
+     display: flex;
+//     -webkit-flex-wrap: wrap;
+     flex-wrap: wrap;
+
+ }
+
+.content-card{
+
+    display: -webkit-flex;
+    display: flex;
+    
+    .card{
+    
+        // height: 100% !important;   
+        margin: 0 0 50px 0;
+        border-radius: 5px;
+
+
+        
+    
+        .card-img-top {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+    
+        .card-body {
+            padding: 0 20px 20px 20px;
+        }
+    
+        img{
+            border-radius: 5px 5px 0 0;
+        }
+    }
+}

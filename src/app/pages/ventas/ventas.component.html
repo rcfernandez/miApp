@@ -1,0 +1,145 @@
+<div class="container">
+    <div class="row">
+  
+      <div class="section">
+        <h4>Administración de Ventas</h4>
+        <div class="divider"></div>
+        <br><br>
+      
+        <!--coluna izquierda-->
+        <div class="col s12 m12 l3">
+          <div class="card">
+            <div class="card-content">
+  
+              <form [formGroup]="myForm" >
+  
+                <!-- ID -->
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="text" class="validate" formControlName="_id" [(ngModel)]="ventasService.selectedVenta._id" disabled />
+                    <label for="_id" [class]="claseLabel">ID</label>
+                  </div>
+                </div>
+  
+                <!-- fecha -->
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="date" formControlName="fecha" [(ngModel)]="ventasService.selectedVenta.fecha" [ngClass]="{ invalid:myForm.get('fecha').hasError('required') && myForm.get('fecha').dirty }">
+                    <label for="fecha" [class]="claseLabel" data-error="" data-success="Correcto">Fecha</label>
+                  </div>
+                  <div *ngIf="myForm.get('fecha').errors && myForm.get('fecha').dirty">
+                    <p *ngIf="myForm.get('fecha').hasError('required')">*El campo es obligatorio</p>
+                  </div>
+                </div>
+
+                <!-- usuario -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select formControlName="usuario" [(ngModel)]="ventasService.selectedVenta.usuario._id" [ngClass]="{ invalid:myForm.get('usuario').hasError('required') && myForm.get('usuario').dirty }">
+                            <option value="" disabled selected>Seleccione...</option>
+                            <option *ngFor="let item of usuarios" [value]="item._id">{{ item.usuario }} </option>
+                        </select>
+                        <label class="active">&nbsp;&nbsp; Usuario</label>
+                    </div>
+                    <div *ngIf="myForm.get('usuario').errors && myForm.get('usuario').dirty">
+                      <p *ngIf="myForm.get('usuario').hasError('required')">*El campo es obligatorio</p>
+                    </div>
+                </div>
+
+                <!-- productos -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select formControlName="productos" [(ngModel)]="ventasService.selectedVenta.productos._id" [ngClass]="{ invalid:myForm.get('productos').hasError('required') && myForm.get('productos').dirty }">
+                            <option value="" disabled selected>Seleccione...</option>
+                            <option *ngFor="let item of productos" [value]="item._id">{{ item.nombre }} </option>
+                        </select>
+                        <label class="active">&nbsp;&nbsp; Productos</label>
+                    </div>
+                </div>
+
+                <!-- total -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="number" class="valid" formControlName="total" [(ngModel)]="ventasService.selectedVenta.total" [ngClass]="{ invalid:myForm.get('total').hasError('required') && myForm.get('total').dirty }">
+                        <label class="active" for="total" data-error="" data-success="">Total</label>
+                    </div>
+                    <div *ngIf="myForm.get('total').errors && myForm.get('total').dirty">
+                      <p *ngIf="myForm.get('total').hasError('required')">*El campo es obligatorio</p>
+                    </div>
+                </div>
+                
+                <!-- estado -->
+                <div class="row">
+                  <div class="input-field col s12">
+                    <div class="switch">
+                      <label>
+                        Pendiente de pago
+                        <input type="checkbox" formControlName="estado" [(ngModel)]="ventasService.selectedVenta.estado">
+                        <span class="lever"></span>
+                        Pagado
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+  
+              <!-- acciones -->
+              <div class="row">
+                <div class="card-action center">
+                  <button class="waves-effect waves-light btn col s12 m12 l6" [disabled]="myForm.invalid" (click)="alta()">Guardar</button>
+                  <button class="waves-effect waves-light btn col s12 m12 l6" (click)="resetForm()">Limpiar</button>
+                </div>
+              </div>
+  
+  
+            </div>
+          </div>
+        </div>
+  
+        <!--columna derecha-->
+        <div class="col s12 m12 l9">
+          <table class="responsive-table">
+            <thead>
+              <tr>
+                <th hidden>ID</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Productos</th>
+                <th>Total</th>
+                <th>Pagado?</th>
+              </tr>
+            </thead>
+  
+            <tbody>
+              <tr *ngFor="let item of ventas">
+                <td hidden>{{ item._id }}</td>
+                <td>{{ item.fecha }}</td>
+                <td>{{ item.usuario['usuario'] }}</td>
+                <td>{{ item.productos['nombre'] }}</td>
+                <td>{{ item.total }}</td>
+                <td>{{ item.estado }}</td>
+                <td>
+                  <a type="submit" class="waves-effect waves-light btn" (click)="modificar(item)"><i class="material-icons">edit</i></a>
+                  <a class="waves-effect waves-light btn red darken-3" (click)="borrar(item._id)"><i class="material-icons">delete</i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    
+  
+  
+        </div>
+      </div> <!-- section -->
+  
+    </div> <!-- row -->
+
+    <div class="row">
+      <app-datatabla [source]="datos" [columns]="columnas"></app-datatabla>
+    </div>
+
+
+  </div> <!-- container -->
+  
+  
+  

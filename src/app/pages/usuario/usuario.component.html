@@ -7,25 +7,32 @@
       <br><br>
     
       <!--coluna izquierda-->
-      <div class="col s12 m12 l5">
+      <div class="col s12 m12 l3">
         <div class="card">
           <div class="card-content">
 
             <form [formGroup]="myForm" >
 
+              <!-- img -->
+              <div class="row">
+                <div class="card-avatar-img input-field col s12 center">
+                  <img src="https://picsum.photos/300/300" alt="" class="circle">
+                </div>
+              </div>
+
               <!-- id -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" class="validate" formControlName="_id" [(ngModel)]="usuariosService.selectedUsuario._id" disabled />
-                  <label for="_id">ID</label>
+                  <input type="text" class="validate" formControlName="_id" [(ngModel)]="usuariosService.selectedUsuario._id" disabled />
+                  <label for="_id" [class]="claseLabel">ID</label>
                 </div>
               </div>
 
               <!-- usuario -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" formControlName="usuario" [(ngModel)]="usuariosService.selectedUsuario.usuario" [ngClass]="{ invalid:myForm.get('usuario').hasError('required') && myForm.get('usuario').dirty }">
-                  <label for="usuario" data-error="" data-success="Correcto">Usuario</label>
+                  <input type="text" formControlName="usuario" [(ngModel)]="usuariosService.selectedUsuario.usuario" [ngClass]="{ invalid:myForm.get('usuario').hasError('required') && myForm.get('usuario').dirty }">
+                  <label for="usuario" [class]="claseLabel" data-error="" data-success="Correcto">Usuario</label>
                   <div *ngIf="myForm.get('usuario').errors && myForm.get('usuario').dirty">
                     <p *ngIf="myForm.get('usuario').hasError('required')">*El campo es obligatorio</p>
                   </div>
@@ -35,8 +42,8 @@
               <!-- nombre -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" formControlName="nombre" [(ngModel)]="usuariosService.selectedUsuario.nombre" [ngClass]="{ invalid:myForm.get('nombre').hasError('required') && myForm.get('nombre').dirty }">
-                  <label for="nombre" data-error="" data-success="Correcto">Nombre</label>
+                  <input type="text" formControlName="nombre" [(ngModel)]="usuariosService.selectedUsuario.nombre" [ngClass]="{ invalid:myForm.get('nombre').hasError('required') && myForm.get('nombre').dirty }">
+                  <label for="nombre" [class]="claseLabel" data-error="" data-success="Correcto">Nombre</label>
                   <div *ngIf="myForm.get('nombre').errors && myForm.get('nombre').dirty">
                     <p *ngIf="myForm.get('nombre').hasError('required')">*El campo es obligatorio</p>
                   </div>
@@ -46,8 +53,8 @@
               <!-- apellido -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" formControlName="apellido" [(ngModel)]="usuariosService.selectedUsuario.apellido" [ngClass]="{ invalid:myForm.get('apellido').hasError('required') && myForm.get('apellido').dirty }">
-                  <label for="apellido" data-error="" data-success="Correcto">Apellido</label>
+                  <input type="text" formControlName="apellido" [(ngModel)]="usuariosService.selectedUsuario.apellido" [ngClass]="{ invalid:myForm.get('apellido').hasError('required') && myForm.get('apellido').dirty }">
+                  <label for="apellido" [class]="claseLabel" data-error="" data-success="Correcto">Apellido</label>
                   <div *ngIf="myForm.get('apellido').errors && myForm.get('apellido').dirty">
                     <p *ngIf="myForm.get('apellido').hasError('required')">*El campo es obligatorio</p>
                   </div>
@@ -57,8 +64,8 @@
               <!-- telefono -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" formControlName="telefono" [(ngModel)]="usuariosService.selectedUsuario.telefono" [ngClass]="{ invalid:myForm.get('telefono').hasError('required') && myForm.get('telefono').dirty }">
-                  <label for="telefono" data-error="" data-success="Correcto">Telefono</label>
+                  <input type="text" formControlName="telefono" [(ngModel)]="usuariosService.selectedUsuario.telefono" [ngClass]="{ invalid:myForm.get('telefono').hasError('required') && myForm.get('telefono').dirty }">
+                  <label for="telefono" [class]="claseLabel" data-error="" data-success="Correcto">Telefono</label>
                   <div *ngIf="myForm.get('telefono').errors && myForm.get('apellido').dirty">
                     <p *ngIf="myForm.get('telefono').hasError('required')">*El campo es obligatorio</p>
                   </div>
@@ -68,8 +75,8 @@
               <!-- email -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" formControlName="email" [(ngModel)]="usuariosService.selectedUsuario.email" [ngClass]="{ invalid:myForm.get('email').hasError('required') && myForm.get('email').dirty }">
-                  <label for="email" data-error="" data-success="Correcto">Email</label>
+                  <input type="text" formControlName="email" [(ngModel)]="usuariosService.selectedUsuario.email" [ngClass]="{ invalid:myForm.get('email').hasError('required') && myForm.get('email').dirty }">
+                  <label for="email" [class]="claseLabel" data-error="" data-success="Correcto">Email</label>
                   <div *ngIf="myForm.get('email').errors && myForm.get('email').dirty">
                     <p *ngIf="myForm.get('email').hasError('required')">*El campo es obligatorio</p>
                   </div>
@@ -79,8 +86,8 @@
               <!-- password -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" formControlName="password" [(ngModel)]="usuariosService.selectedUsuario.password" [ngClass]="{ invalid:myForm.get('password').hasError('required') && myForm.get('password').dirty }">
-                  <label for="password" data-error="" data-success="Correcto">Password</label>
+                  <input type="text" formControlName="password" [(ngModel)]="usuariosService.selectedUsuario.password" [ngClass]="{ invalid:myForm.get('password').hasError('required') && myForm.get('password').dirty }">
+                  <label for="password" [class]="claseLabel" data-error="" data-success="Correcto">Password</label>
                   <div *ngIf="myForm.get('password').errors && myForm.get('password').dirty">
                     <p *ngIf="myForm.get('password').hasError('required')">*El campo es obligatorio</p>
                   </div>
@@ -103,11 +110,12 @@
       </div>
 
       <!--columna derecha-->
-      <div class="col s12 m12 l7">
+      <div class="col s12 m12 l9">
         <table class="responsive-table">
           <thead>
-            <tr hidden>
-              <th>ID</th>
+            <tr>
+              <th hidden>ID</th>
+              <th>Imagen</th>
               <th>Usuario</th>
               <th>Nombre</th>
               <th>Apellido</th>
@@ -121,6 +129,7 @@
           <tbody>
             <tr *ngFor="let item of usuarios">
               <td hidden>{{ item._id }}</td>
+              <td class="avatar-img"><img src="https://picsum.photos/300/300" alt="" class="circle"></td>
               <td>{{ item.usuario }}</td>
               <td>{{ item.nombre }}</td>
               <td>{{ item.apellido }}</td>

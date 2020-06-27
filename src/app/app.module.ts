@@ -16,9 +16,11 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { LoginComponent } from './pages/login/login.component';
+import { VentasComponent } from './pages/ventas/ventas.component';
+import { MaterialTableComponent } from './components/material-table/material-table.component';
 
-
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { DatatablaComponent } from './components/datatabla/datatabla.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,9 @@ import { LoginComponent } from './pages/login/login.component';
     CategoriasComponent,
     TableListComponent,
     TituloComponent,
+    VentasComponent,
+    MaterialTableComponent,
+    DatatablaComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,7 @@ import { LoginComponent } from './pages/login/login.component';
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [

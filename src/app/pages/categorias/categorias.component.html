@@ -8,7 +8,7 @@
       <br><br>
 
       <!--coluna izquierda-->
-      <div class="col s12 m12 l5">
+      <div class="col s12 m12 l3">
         <div class="card">
           <div class="card-content">
   
@@ -16,15 +16,15 @@
   
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" class="validate" formControlName="_id" [(ngModel)]="categoriasService.selectedCategoria._id" disabled />
-                  <label for="first_name">ID</label>
+                  <input type="text" class="validate" formControlName="_id" [(ngModel)]="categoriasService.selectedCategoria._id" disabled />
+                  <label for="_id" [class]="claseLabel">ID</label>
                 </div>
               </div>
   
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" formControlName="descripcion" [(ngModel)]="categoriasService.selectedCategoria.descripcion" [ngClass]="{ invalid:myForm.get('descripcion').hasError('required') && myForm.get('descripcion').dirty }">
-                  <label for="descripcion" data-error="" data-success="Correcto">Descripción</label>
+                  <input type="text" formControlName="descripcion" [(ngModel)]="categoriasService.selectedCategoria.descripcion" [ngClass]="{ invalid:myForm.get('descripcion').hasError('required') && myForm.get('descripcion').dirty }">
+                  <label for="descripcion" [class]="claseLabel" data-error="" data-success="Correcto">Descripción</label>
                   <div *ngIf="myForm.get('descripcion').errors && myForm.get('descripcion').dirty">
                     <p *ngIf="myForm.get('descripcion').hasError('required')">*El campo es obligatorio</p>
                   </div>
@@ -45,11 +45,11 @@
       </div>
   
       <!--columna derecha-->
-      <div class="col s12 m12 l7">
+      <div class="col s12 m12 l9">
         <table class="highlight">
           <thead>
             <tr>
-              <th>ID</th>
+              <th hidden>ID</th>
               <th>Descripción</th>
               <th>Acciones</th>
             </tr>
@@ -57,7 +57,7 @@
   
           <tbody>
             <tr *ngFor="let item of categorias">
-              <td>{{ item._id }}</td>
+              <td hidden>{{ item._id }}</td>
               <td>{{ item.descripcion }}</td>
               <td>
                 <button type="submit" class="waves-effect waves-light btn" (click)="modificar(item)"><i class="material-icons">edit</i></button>

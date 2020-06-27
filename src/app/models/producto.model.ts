@@ -4,7 +4,7 @@ export class Producto {
   descripcion: string;
   precio: number;
   cantidad: number;
-  categoria: string;
+  categoria: any;
   destacado: number;
 
   constructor(
@@ -13,7 +13,7 @@ export class Producto {
     descripcion = '',
     precio = 0,
     cantidad = 0,
-    categoria = '',
+    categoria = {},
     destacado = 0
   ) {
     this._id = id;

@@ -3,7 +3,7 @@ import { CategoriasService } from '../../services/categorias.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Categoria } from '../../models/categoria.model';
 
-declare var Materialize;
+declare var M;
 
 @Component({
   selector: 'app-categorias',
@@ -11,8 +11,9 @@ declare var Materialize;
   styleUrls: ['./categorias.component.css'],
 })
 export class CategoriasComponent implements OnInit {
-  categorias;
+  categorias: Categoria[];
   myForm: FormGroup;
+  claseLabel = "";
 
   constructor(
     public categoriasService: CategoriasService,
@@ -31,8 +32,7 @@ export class CategoriasComponent implements OnInit {
 
   traerCategorias() {
     this.categoriasService.getCategorias().subscribe((data) => {
-      this.categorias = data;
-      console.log(data);
+      this.categorias = data as Categoria[];
     });
   }
 
@@ -40,17 +40,15 @@ export class CategoriasComponent implements OnInit {
     if(this.myForm.controls["_id"].value){
       // se modifica
       this.categoriasService.modificarCategoria(this.myForm.controls["_id"].value, this.myForm.value).subscribe((data) => {
-        this.myForm.reset();
-        this.traerCategorias();
-        Materialize.toast('Se modifico correctamente', 4000, 'rounded')
+        this.resetForm();
+        M.toast({html: 'Se modifico correctamente', classes: 'rounded'});
       });
     }
     // sino agrega uno nuevo
     else{
       this.categoriasService.altaCategoria(this.myForm.value).subscribe((data) => {
-        this.myForm.reset();
-        this.traerCategorias();
-        Materialize.toast('Se agrego correctamente', 4000, 'rounded')
+        this.resetForm();
+        M.toast({html: 'Se agrego correctamente', classes: 'rounded'});
       });
       
     }
@@ -58,19 +56,28 @@ export class CategoriasComponent implements OnInit {
 
   modificar(categoria: Categoria) {
     this.categoriasService.selectedCategoria = categoria;
+    this.myForm = this.fb.group({
+      _id: [categoria._id],
+      descripcion: [categoria.descripcion, Validators.required],
+    });
+    this.claseLabel="active";
   }
 
   borrar(id) {
      if(confirm("Estas seguro de querer borrarlo?")){
        this.categoriasService.borrarCategoria(id).subscribe(() => {
          this.traerCategorias();
-         Materialize.toast('Se borro correctamente', 4000, 'rounded')
+         M.toast({html: 'Se borro correctamente', classes: 'rounded'});
        });
      }
   }
 
   resetForm() {
     this.myForm.reset();
+    this.claseLabel="";
     this.traerCategorias();
+    M.updateTextFields();
   }
-}
+
+
+} /*clase categorias*/

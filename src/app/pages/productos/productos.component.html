@@ -7,25 +7,32 @@
       <br><br>
     
       <!--coluna izquierda-->
-      <div class="col s12 m12 l5">
+      <div class="col s12 m12 l3">
         <div class="card">
           <div class="card-content">
 
             <form [formGroup]="myForm" >
 
+              <!-- img -->
+              <div class="row">
+                <div class="card-avatar-img input-field col s12 center">
+                  <img src="https://picsum.photos/300/300" alt="" class="circle">
+                </div>
+              </div>
+
               <!-- ID -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" class="validate" formControlName="_id" [(ngModel)]="productosService.selectedProducto._id" disabled />
-                  <label for="_id">ID</label>
+                  <input type="text" class="validate" formControlName="_id" [(ngModel)]="productosService.selectedProducto._id" disabled />
+                  <label for="_id" [class]="claseLabel">ID</label>
                 </div>
               </div>
 
               <!-- nombre - obligatorio -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" formControlName="nombre" [(ngModel)]="productosService.selectedProducto.nombre" [ngClass]="{ invalid:myForm.get('nombre').hasError('required') && myForm.get('nombre').dirty }">
-                  <label for="nombre" data-error="" data-success="Correcto">nombre</label>
+                  <input type="text" formControlName="nombre" [(ngModel)]="productosService.selectedProducto.nombre" [ngClass]="{ invalid:myForm.get('nombre').hasError('required') && myForm.get('nombre').dirty }">
+                  <label for="nombre" [class]="claseLabel" data-error="" data-success="Correcto">Nombre</label>
                   <div *ngIf="myForm.get('nombre').errors && myForm.get('nombre').dirty">
                     <p *ngIf="myForm.get('nombre').hasError('required')">*El campo es obligatorio</p>
                   </div>
@@ -35,8 +42,8 @@
               <!-- descripcion - obligatorio -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" formControlName="descripcion" [(ngModel)]="productosService.selectedProducto.descripcion" [ngClass]="{ invalid:myForm.get('descripcion').hasError('required') && myForm.get('descripcion').dirty }">
-                  <label for="descripcion" data-error="" data-success="Correcto">descripcion</label>
+                  <input type="text" formControlName="descripcion" [(ngModel)]="productosService.selectedProducto.descripcion" [ngClass]="{ invalid:myForm.get('descripcion').hasError('required') && myForm.get('descripcion').dirty }">
+                  <label for="descripcion" [class]="claseLabel" data-error="" data-success="Correcto">Descripción</label>
                   <div *ngIf="myForm.get('descripcion').errors && myForm.get('descripcion').dirty">
                     <p *ngIf="myForm.get('descripcion').hasError('required')">*El campo es obligatorio</p>
                   </div>
@@ -46,40 +53,46 @@
               <!-- precio - obligatorio -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" placeholder="" formControlName="precio" [(ngModel)]="productosService.selectedProducto.precio" [ngClass]="{ invalid:myForm.get('precio').hasError('required') && myForm.get('precio').dirty }">
-                  <label for="precio" data-error="" data-success="Correcto">precio</label>
-                  <div *ngIf="myForm.get('precio').errors && myForm.get('precio').dirty">
-                    <p *ngIf="myForm.get('precio').hasError('required')">*El campo es obligatorio</p>
-                  </div>
+                  <input type="number" formControlName="precio" [(ngModel)]="productosService.selectedProducto.precio">
+                  <label for="precio" class="active" data-error="" data-success="Correcto">Precio</label>
                 </div>
               </div>
 
               <!-- cantidad -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" class="valid" placeholder="" formControlName="cantidad" [(ngModel)]="productosService.selectedProducto.cantidad">
-                  <label for="cantidad" data-error="" data-success="">cantidad</label>
+                  <input type="number" class="valid" formControlName="cantidad" [(ngModel)]="productosService.selectedProducto.cantidad">
+                  <label for="cantidad" class="active" data-error="" data-success="">Cantidad</label>
+                </div>
+              </div>
+              
+              <!-- CATEGORIA -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <select formControlName="categoria" [(ngModel)]="productosService.selectedProducto.categoria._id" [ngClass]="{ invalid:myForm.get('categoria').hasError('required') && myForm.get('categoria').dirty }">
+                    <option *ngFor="let item of categorias" [value]="item._id">{{ item.descripcion }} </option>
+                  </select>
+                  <label class="active">&nbsp;&nbsp; Categoria</label>
+                  <div *ngIf="myForm.get('categoria').errors && myForm.get('categoria').dirty">
+                    <p *ngIf="myForm.get('categoria').hasError('required')">*El campo es obligatorio</p>
+                  </div>
                 </div>
               </div>
 
               <!-- destacado -->
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" class="valid" placeholder="" formControlName="destacado" [(ngModel)]="productosService.selectedProducto.destacado">
-                  <label for="destacado" data-error="" data-success="">destacado</label>
+                  <div class="switch">
+                    <label>
+                      No Destacado
+                      <input type="checkbox" formControlName="destacado" [(ngModel)]="productosService.selectedProducto.destacado">
+                      <span class="lever"></span>
+                      Destacado
+                    </label>
+                  </div>
                 </div>
               </div>
 
-              <!-- CATEGORIA -->
-              <div class="row">
-                <div class="input-field col s12">
-                  <select  formControlName="categoria" [(ngModel)]="productosService.selectedProducto.categoria">
-                    <option value="" disabled selected>Seleccione...</option>
-                    <option *ngFor="let item of categorias" [value]="item._id">{{ item.descripcion }} </option>
-                  </select>
-                  <label>Seleccione Categoria</label>
-                </div>
-              </div>
 
             </form>
 
@@ -97,12 +110,53 @@
       </div>
 
       <!--columna derecha-->
-      <div class="col s12 m12 l7">
+      <div class="col s12 m12 l9">
+
+        <ngx-datatable
+        class="material"
+        [rows]='productos'
+        
+        
+        [headerHeight]="50"
+        [footerHeight]="50"
+        rowHeight="auto"
+    
+
+        columnMode="force"
+
+        [externalPaging]="true"
+        [count]="paginado.totalDocs"
+        [limit]="paginado.limit"
+        (page)="setPage($event)"
+        (activate)="modificar2($event)"
+    
+        >
+        <ngx-datatable-column name="Imagen" prop="id" >
+          <ng-template let-row="rows" let-value="value" ngx-datatable-cell-template>
+            <img class="img-thumbnail" style="height: auto; width: 100px;" src="https://picsum.photos/200/200" alt="Card image cap"/>
+          </ng-template>  
+        </ngx-datatable-column>
+        
+        <ngx-datatable-column *ngFor="let col of columns" [name]="col.name" [prop]="col.prop" ></ngx-datatable-column>
+    
+        
+        <ngx-datatable-column name="Acciones" prop="id" >
+          <ng-template let-row="rows" let-value="value" ngx-datatable-cell-template>
+            <a   class="waves-effect waves-light btn"><i class="material-icons">edit</i></a>
+            <a (click)="borrar(value)" class="waves-effect waves-light btn red darken-3"><i class="material-icons">delete</i></a>
+          </ng-template>  
+        </ngx-datatable-column>
+    
+      </ngx-datatable>
+
+
+<!-- 
+
         <table class="responsive-table">
           <thead>
             <tr>
               <th>Imagen</th>
-              <th>ID</th>
+              <th hidden>ID</th>
               <th>Nombre</th>
               <th>Descripcion</th>
               <th>Precio</th>
@@ -116,7 +170,7 @@
           <tbody>
             <tr *ngFor="let item of productos">
               <td><img class="img-thumbnail" style="height: auto; width: 100px;" src="http://lorempixel.com/286/180/" alt="Card image cap"/></td>
-              <td>{{ item._id }}</td>
+              <td hidden>{{ item._id }}</td>
               <td>{{ item.nombre }}</td>
               <td>{{ item.descripcion }}</td>
               <td>{{ item.precio }}</td>
@@ -131,8 +185,20 @@
           </tbody>
         </table>
 
-
         <div class="row right">
+          <ul class="pagination">
+            <li class="disabled"><a href=""><i class="material-icons">chevron_left</i></a></li>
+            <li class="waves-effect"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href=""><i class="material-icons">chevron_right</i></a></li>
+          </ul>
+        </div> -->
+
+
+        <!-- <div class="row right">
             <ul class="pagination">
               <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
               <li class="active"><a href="#!">1</a></li>
@@ -142,7 +208,7 @@
               <li class="waves-effect"><a href="#!">5</a></li>
               <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
             </ul>
-        </div>
+        </div> -->
 
 
 
@@ -150,6 +216,10 @@
     </div> <!-- section -->
 
   </div> <!-- row -->
+
+
+
+
 </div> <!-- container -->
 
 
